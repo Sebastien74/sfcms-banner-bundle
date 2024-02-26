@@ -1,0 +1,37 @@
+{
+    "name": "sfcms/banner-bundle",
+    "type": "library",
+    "description": "SFCMS - Banner Bundle.",
+    "keywords": [
+        "sfcms",
+        "banner",
+        "bundle"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sébastien FOURNIER"
+        }
+    ],
+    "require": {
+        "php": ">=8.2.11"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "App\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
