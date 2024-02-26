@@ -6,3 +6,6 @@
 [![Generic badge](https://img.shields.io/badge/Contributor-1-blue.svg)](https://github.com/Sebastien74)
 ![Generic badge](https://img.shields.io/badge/PHP-8.2-orange.svg)
 ---
+
+git tag v1.0.0
+git push --tags -u origin main
