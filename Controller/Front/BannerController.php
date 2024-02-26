@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Controller\Front\Action;
+namespace SFCms;
+
 use App\Controller\Front\FrontController;
 use Symfony\Component\Routing\Attribute\Route;
 
-/**
+/*
  * BannerController.
  *
- * Front Banner renders
+ * (c) Sébastien FOURNIER <contact@sebastien-fournier.com>
  *
- * @author Sébastien FOURNIER <contact@sebastien-fournier.com>
+ * Front Banner renders
  */
 class BannerController extends FrontController
 {

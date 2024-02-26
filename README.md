@@ -9,3 +9,9 @@
 
 git tag v1.0.0
 git push --tags -u origin main
+
+// config/bundles.php
+return [
+// ...
+Acme\BlogBundle\AcmeBlogBundle::class => ['all' => true],
+];
