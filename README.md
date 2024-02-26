@@ -10,6 +10,8 @@
 git tag v1.0.0
 git push --tags -u origin main
 
+https://symfony.com/doc/current/bundles/override.html
+
 // config/bundles.php
 return [
 // ...

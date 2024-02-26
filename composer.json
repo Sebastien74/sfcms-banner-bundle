@@ -1,24 +1,28 @@
 {
     "name": "sfcms/banner-bundle",
-    "type": "library",
-    "description": "SFCMS - Banner Bundle.",
+    "type": "symfony-bundle",
+    "description": "SFCms - Banner Bundle.",
     "keywords": [
         "sfcms",
         "banner",
         "bundle"
     ],
+    "homepage": "https://github.com/Sebastien74",
     "license": "MIT",
     "authors": [
         {
-            "name": "Sébastien FOURNIER"
+            "name": "Sébastien FOURNIER",
+            "email": "fournier.sebastien@outlook.com",
+            "homepage": "https://github.com/Sebastien74"
         }
     ],
     "require": {
-        "php": ">=8.2.11"
+        "php": ">=8.2.11",
+        "symfony/framework-bundle": "^6.4|^7.0"
     },
     "autoload": {
         "psr-4": {
-            "SFCms\\BannerBundle\\": ""
+            "SFCms\\Bundle\\BannerBundle\\": "src"
         },
         "exclude-from-classmap": [
             "/Tests/"
@@ -27,9 +31,6 @@
     "extra": {
         "branch-alias": {
             "dev-master": "1.0-dev"
-        },
-        "symfony": {
-            "require": ">= 6.4.*"
         }
     },
     "config": {
