@@ -1,6 +1,6 @@
 <?php
 
-namespace SFCms\Bundle\BannerBundle\Controller\Front;
+namespace Sfcms\BannerBundle\Controller\Front;
 
 use App\Controller\Front\FrontController;
 use Symfony\Component\Routing\Attribute\Route;
@@ -18,7 +18,7 @@ class BannerController extends FrontController
      * Index.
      */
     #[Route('/action/banner/view', name: 'front_banner_view', options: ['isMainRequest' => false], methods: 'GET', schemes: '%protocol%')]
-    public function index()
+    public function toto()
     {
         die;
     }

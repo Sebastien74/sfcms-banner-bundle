@@ -1,0 +1,9 @@
+#SfcmsBannerBundle\src\Controller\:
+#    resource: '../../src/Controller/'
+##    resource: '@SfcmsBannerBundle/Controller/'
+#    type: attribute
+
+#sfcms_bundle_banner:
+#    resource: '../../src/Controller/'
+##    resource: '@SfcmsBannerBundle/Controller/'
+#    type: attribute

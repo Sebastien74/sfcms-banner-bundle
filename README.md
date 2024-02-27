@@ -15,5 +15,5 @@ https://symfony.com/doc/current/bundles/override.html
 // config/bundles.php
 return [
 // ...
-SFCms\BannerBundle\BannerBundle::class => ['all' => true],
+Sfcms\BannerBundle\BannerBundle::class => ['all' => true],
 ];

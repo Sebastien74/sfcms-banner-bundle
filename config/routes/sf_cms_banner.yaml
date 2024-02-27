@@ -1,5 +1,0 @@
-sf_cms_banner_controllers:
-    resource:
-        path: '@SFCms/src/Controller/'
-        namespace: SFCms\BannerBundle\Controller
-    type: attribute

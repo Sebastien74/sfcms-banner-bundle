@@ -1,7 +1,7 @@
 {
     "name": "sfcms/banner-bundle",
     "type": "symfony-bundle",
-    "description": "SFCms - Banner Bundle.",
+    "description": "Sfcms - Banner Bundle.",
     "keywords": [
         "sfcms",
         "banner",
@@ -22,7 +22,7 @@
     },
     "autoload": {
         "psr-4": {
-            "SFCms\\Bundle\\BannerBundle\\": "src"
+            "Sfcms\\BannerBundle\\": "src"
         },
         "exclude-from-classmap": [
             "/Tests/"
