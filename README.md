@@ -1,10 +1,14 @@
 # sfcms/banner-bundle
 
+[![Generic badge](https://img.shields.io/badge/Sfcms-v.6.4-brown.svg)](https://github.com/Sebastien74/SFCMS-6)
 [![Generic badge](https://img.shields.io/badge/Version-1-blue.svg)](https://github.com/Sebastien74/SFCMS-6)
 [![Generic badge](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/Sebastien74/MIT-LICENSE/blob/main/LICENSE.md)
 [![Generic badge](https://img.shields.io/badge/Author-Sébastien%20FOURNIER-blue.svg)](https://github.com/Sebastien74)
 [![Generic badge](https://img.shields.io/badge/Contributor-1-blue.svg)](https://github.com/Sebastien74)
-![Generic badge](https://img.shields.io/badge/PHP-8.2-orange.svg)
+![Generic badge](https://img.shields.io/badge/PHP-8.3-orange.svg)
+
+To manage sqdsqd dsqdsqd qsdsq sdqsqdsqd
+
 ---
 
 Add TAG
@@ -29,11 +33,6 @@ import(/* webpackPreload: true */ './components/banner').then(({default: banner}
 new banner();
 }).catch(error => console.error(error.message));
 }
-
-
-            [$this->translator->trans('Bannière publicitaire', [], 'admin'), Controller\PublicityController::class, 'view', \App\Entity\Module\Banner\Publicity::class, 'banner-view', 'fal fa-image', 'banner', true],
-            [$this->translator->trans('Bannières publicitaires', [], 'admin'), Controller\PublicityController::class, 'teaser', \App\Entity\Module\Banner\Teaser::class, 'banner-teaser', 'fal fa-image', 'banner', true],
-
 
 IN modules.html.twig sidebar
 {% include 'admin/include/sidebar/include/modules/banner.html.twig' %}
