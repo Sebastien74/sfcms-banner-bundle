@@ -29,14 +29,14 @@
         ]
     },
     "scripts": {
-        "auto-scripts": {
+        "bundle-scripts": {
             "app:copy:bundle": "app-bundle-cmd"
         },
         "post-install-cmd": [
-            "@auto-scripts"
+            "@bundle-scripts"
         ],
         "post-update-cmd": [
-            "@auto-scripts"
+            "@bundle-scripts"
         ]
     },
     "extra": {
