@@ -2,8 +2,10 @@
     "name": "sfcms/banner-bundle",
     "type": "symfony-bundle",
     "description": "Sfcms - Banner Bundle.",
-    "init": {
-        "name": "Banner",
+    "config": {
+        "slug": "banner",
+        "title": "Bannières",
+        "roleTitle": "Gestion des bannières publicitaires",
         "cmd": "app:copy:bundle"
     },
     "keywords": [
@@ -27,8 +29,5 @@
         "branch-alias": {
             "dev-master": "1.0-dev"
         }
-    },
-    "config": {
-        "sort-packages": true
     }
 }

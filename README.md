@@ -13,6 +13,49 @@ git push --tags -u origin main
 https://symfony.com/doc/current/bundles/override.html
 
 php composer.phar dump-autoload
-php composer.phar require sfcms/banner-bundle --no-scripts
+php composer.phar require sfcms/banner-bundle
 php bin/console app:copy:bundle
 php composer.phar dump-autoload --classmap-authoritative --optimize
+
+
+let banner = body.querySelectorAll('[data-component="banner"]');
+if (banner.length > 0) {
+import(/* webpackPreload: true */ './components/banner').then(({default: banner}) => {
+new banner();
+}).catch(error => console.error(error.message));
+}
+
+
+            [$this->translator->trans('Bannière publicitaire', [], 'admin'), Controller\PublicityController::class, 'view', \App\Entity\Module\Banner\Publicity::class, 'banner-view', 'fal fa-image', 'banner', true],
+            [$this->translator->trans('Bannières publicitaires', [], 'admin'), Controller\PublicityController::class, 'teaser', \App\Entity\Module\Banner\Teaser::class, 'banner-teaser', 'fal fa-image', 'banner', true],
+
+
+IN modules.html.twig sidebar
+{% include 'admin/include/sidebar/include/modules/banner.html.twig' %}
+
+Add in this table or do it automataly by active modules
+    {% set modules = [
+        'newscasts',
+        'matches',
+        'sliders',
+        'events',
+        'maps',
+        'faqs',
+        'forms',
+        'forums',
+        'galleries',
+        'newsletters',
+        'partners',
+        'portfolios',
+        'tables',
+        'tabs',
+        'searchs',
+        'catalogs',
+        'makings',
+        'agendas',
+        'forums',
+        'timelines',
+        'portfolios',
+        'publicities',
+        'contacts'
+    ] %}

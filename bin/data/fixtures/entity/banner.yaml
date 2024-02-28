@@ -1,0 +1,92 @@
+#####################################
+#           Publicity               #
+#####################################
+
+App\Entity\Module\Publicity\Category:
+    translations:
+        adminName:
+            fr: "Nom de la catégorie (Module publicité)"
+            en: 'Category name (Module banner)'
+        singular:
+            fr: "Catégorie de publicité"
+            en: 'Publicity category'
+        plural:
+            fr: "Catégories de publicités"
+            en: 'Advertising categories'
+        add:
+            fr: 'Ajouter une catégorie'
+            en: 'Add category'
+        delete:
+            fr: "Supprimer la catégorie"
+            en: 'Delete category'
+        maxWidth:
+            fr: "Largeur"
+            en: 'Width'
+        maxHeight:
+            fr: "Hauteur"
+            en: 'Height'
+    columns:
+        - adminName
+        - maxWidth
+        - maxHeight
+
+App\Entity\Module\Publicity\Publicity:
+    translations:
+        adminName:
+            fr: "Nom de la publicité"
+            en: 'Publicity name'
+        category:
+            fr: "Catégorie"
+            en: 'Category'
+        singular:
+            fr: 'Bannière publicitaire'
+            en: 'Publicity'
+        plural:
+            fr: 'Bannières publicitaires'
+            en: 'Advertising'
+        add:
+            fr: 'Ajouter une bannières'
+            en: 'Add banner'
+        delete:
+            fr: "Supprimer la bannières"
+            en: 'Delete banner'
+        media:
+            fr: 'Image'
+            en: 'Image'
+        viewCount:
+            fr: 'Nombre de vue'
+            en: 'View number'
+        clickCount:
+            fr: 'Nombre de clique'
+            en: 'Click number'
+        active:
+            fr: 'Activée'
+            en: 'Active'
+    columns:
+        - media
+        - adminName
+        - viewCount
+        - clickCount
+        - active
+        - publicationStart
+        - publicationEnd
+
+App\Entity\Module\Publicity\Teaser:
+    translations:
+        adminName:
+            fr: 'Nom du teaser (Module publicités)'
+            en: 'Teaser name (Module banner)'
+        singular:
+            fr: 'Teaser (Module publicités)'
+            en: 'Teaser (Module banner)'
+        plural:
+            fr: 'Teasers'
+            en: 'Teasers'
+        add:
+            fr: 'Ajouter un teaser'
+            en: 'Add teaser'
+        delete:
+            fr: "Supprimer le teaser"
+            en: 'Delete teaser'
+    columns:
+        - adminName

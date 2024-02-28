@@ -5,13 +5,15 @@ namespace App\Controller\Admin\Module\Banner;
 use App\Controller\Admin\AdminController;
 use App\Entity\Module\Banner\Banner;
 use App\Form\Type\Module\Banner\BannerType;
+use App\Service\Interface\AdminLocatorInterface;
+use App\Service\Interface\CoreLocatorInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 /**
- * BannerController.
+ * BannerController
  *
  * Banner Action management
  *
@@ -25,9 +27,17 @@ class BannerController extends AdminController
     protected ?string $formType = BannerType::class;
 
     /**
-     * Index Banner.
-     *
-     * {@inheritdoc}
+     * BannerController constructor.
+     */
+    public function __construct(
+        protected CoreLocatorInterface $baseLocator,
+        protected AdminLocatorInterface $adminLocator
+    ) {
+        parent::__construct($baseLocator, $adminLocator);
+    }
+
+    /**
+     * Index Banner
      */
     #[Route('/index', name: 'admin_banner_index', methods: 'GET|POST')]
     public function index(Request $request, PaginatorInterface $paginator)
@@ -36,9 +46,7 @@ class BannerController extends AdminController
     }
 
     /**
-     * New Banner.
-     *
-     * {@inheritdoc}
+     * New Banner
      */
     #[Route('/new', name: 'admin_banner_new', methods: 'GET|POST')]
     public function new(Request $request)
@@ -47,9 +55,7 @@ class BannerController extends AdminController
     }
 
     /**
-     * Edit Banner.
-     *
-     * {@inheritdoc}
+     * Edit Banner
      */
     #[Route('/edit/{banner}', name: 'admin_banner_edit', methods: 'GET|POST')]
     public function edit(Request $request)
@@ -58,31 +64,7 @@ class BannerController extends AdminController
     }
 
     /**
-     * Show Banner.
-     *
-     * {@inheritdoc}
-     */
-    #[Route('/show/{banner}', name: 'admin_banner_show', methods: 'GET')]
-    public function show(Request $request)
-    {
-        return parent::show($request);
-    }
-
-    /**
-     * Position Banner.
-     *
-     * {@inheritdoc}
-     */
-    #[Route('/position/{banner}', name: 'admin_banner_position', methods: 'GET|POST')]
-    public function position(Request $request)
-    {
-        return parent::position($request);
-    }
-
-    /**
-     * Delete Banner.
-     *
-     * {@inheritdoc}
+     * Delete Banner
      */
     #[Route('/delete/{banner}', name: 'admin_banner_delete', methods: 'DELETE')]
     public function delete(Request $request)
