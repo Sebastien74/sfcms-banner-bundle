@@ -27,17 +27,6 @@
             "Sfcms\\BannerBundle\\": "src/"
         }
     },
-    "scripts": {
-        "bundle-scripts": {
-            "app:copy:bundle": "app-bundle-cmd"
-        },
-        "post-install-cmd": [
-            "@bundle-scripts"
-        ],
-        "post-update-cmd": [
-            "@bundle-scripts"
-        ]
-    },
     "extra": {
         "branch-alias": {
             "dev-master": "1.0-dev"
