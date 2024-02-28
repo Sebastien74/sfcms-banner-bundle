@@ -22,11 +22,6 @@
     "require": {
         "php": ">=8.2.11"
     },
-    "autoload": {
-        "psr-4": {
-            "Sfcms\\BannerBundle\\": "src/"
-        }
-    },
     "extra": {
         "branch-alias": {
             "dev-master": "1.0-dev"
