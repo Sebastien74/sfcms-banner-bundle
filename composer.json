@@ -2,6 +2,9 @@
     "name": "sfcms/banner-bundle",
     "type": "symfony-bundle",
     "description": "Sfcms - Banner Bundle.",
+    "init": {
+        "name": "Banner"
+    },
     "keywords": [
         "sfcms",
         "banner",
@@ -29,14 +32,14 @@
         ]
     },
     "scripts": {
-        "bundle-scripts": {
+        "auto-scripts": {
             "app:copy:bundle": "app-bundle-cmd"
         },
         "post-install-cmd": [
-            "@bundle-scripts"
+            "@auto-scripts"
         ],
         "post-update-cmd": [
-            "@bundle-scripts"
+            "@auto-scripts"
         ]
     },
     "extra": {

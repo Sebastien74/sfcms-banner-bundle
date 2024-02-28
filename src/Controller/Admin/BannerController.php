@@ -1,6 +1,6 @@
 <?php
 
-namespace Sfcms\BannerBundle\Controller\Admin;
+namespace App\Controller\Admin\Module\Admin;
 
 use App\Controller\Admin\AdminController;
 use Symfony\Component\Routing\Attribute\Route;
