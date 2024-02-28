@@ -1,0 +1,5 @@
+#services:
+#
+#    Sfcms\BannerBundle\src\Controller\:
+#        resource: '%sfcms_banner_bundle.controller%'
+#        type: attribute

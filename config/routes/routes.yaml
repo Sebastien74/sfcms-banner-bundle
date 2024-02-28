@@ -1,9 +1,27 @@
-#SfcmsBannerBundle\src\Controller\:
+#sfcms_banner_controllers:
+##    resource: '../../../src/Controller/'
 #    resource: '../../src/Controller/'
-##    resource: '@SfcmsBannerBundle/Controller/'
 #    type: attribute
 
-#sfcms_bundle_banner:
+#aaaaaaaaaaaaaaa_test_route:
+#    path: /test
+#    controller: Sfcms\BannerBundle\Controller\BannerController::test
+
+#sfcms_banner_routes:
+#    resource: '@SfcmsBannerBundle/Controller/'
+#    type: annotation
+
+#sfcms_banner_extra_routes:
 #    resource: '../../src/Controller/'
-##    resource: '@SfcmsBannerBundle/Controller/'
-#    type: attribute
+#    type: banner_extra_loader
+
+
+## WORKING DONT TOUCH ##
+## WORKING DONT TOUCH ##
+## WORKING DONT TOUCH ##
+sfcms_banner_routes:
+    resource: '../../src/Controller/'
+    type: annotation
+## WORKING DONT TOUCH ##
+## WORKING DONT TOUCH ##
+## WORKING DONT TOUCH ##
