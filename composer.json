@@ -6,7 +6,31 @@
         "slug": "banner",
         "title": "Bannières",
         "roleTitle": "Gestion des bannières publicitaires",
-        "cmd": "app:copy:bundle"
+        "cmd": "app:copy:bundle",
+        "module": {
+            "name": "Bannières publicitaires",
+            "icon": "fal fa-image"
+        },
+        "actions": [
+            {
+                "name": "Bannière publicitaire",
+                "controller": "App\\Controller\\Front\\Action\\BannerController",
+                "class": "App\\Entity\\Module\\Banner\\Banner",
+                "action": "view",
+                "icon": "fal fa-image",
+                "asCard": false,
+                "dropdown": true
+            },
+            {
+                "name": "Bannières publicitaires",
+                "controller": "App\\Controller\\Front\\Action\\BannerController",
+                "class": "App\\Entity\\Module\\Banner\\Teaser",
+                "action": "teaser",
+                "icon": "fal fa-images",
+                "asCard": false,
+                "dropdown": true
+            }
+        ]
     },
     "keywords": [
         "sfcms",
@@ -23,7 +47,8 @@
         }
     ],
     "require": {
-        "php": ">=8.2.11"
+        "php": ">=8.2.11",
+        "symfony/framework-bundle": "^6.4|^7.0"
     },
     "extra": {
         "branch-alias": {
