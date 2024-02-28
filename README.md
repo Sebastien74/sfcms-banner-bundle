@@ -12,8 +12,6 @@ git push --tags -u origin main
 
 https://symfony.com/doc/current/bundles/override.html
 
-// config/bundles.php
-return [
-// ...
-Sfcms\BannerBundle\BannerBundle::class => ['all' => true],
-];
+php composer.phar require sfcms/banner-bundle --no-scripts
+php bin/console app:copy:bundle
+php composer.phar dump-autoload --classmap-authoritative --optimize
