@@ -7,8 +7,13 @@
 ![Generic badge](https://img.shields.io/badge/PHP-8.2-orange.svg)
 ---
 
+Add TAG
 git tag v1.0.0
 git push --tags -u origin main
+
+Remove tags
+git tag | foreach-object -process { git push origin --delete $_ }
+git tag | foreach-object -process { git tag -d $_ }
 
 https://symfony.com/doc/current/bundles/override.html
 
