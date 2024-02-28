@@ -1,5 +1,7 @@
 <?php
 
+namespace Sfcms\BannerBundle\Form\Type;
+
 /**
  * BannerType.
  *
