@@ -28,16 +28,21 @@
             "/Tests/"
         ]
     },
+    "scripts": {
+        "auto-scripts": {
+            "app:copy:bundle": "app-bundle-cmd"
+        },
+        "post-install-cmd": [
+            "@auto-scripts"
+        ],
+        "post-update-cmd": [
+            "@auto-scripts"
+        ]
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "1.0-dev"
-        },
-        "composer-file-copier-plugin": [
-            {
-                "source": "src/Entity/toto.txt",
-                "target": "src/Entity/toto.txt"
-            }
-        ]
+        }
     },
     "config": {
         "sort-packages": true
