@@ -1,6 +1,6 @@
 <?php
 
-namespace Sfcms\BannerBundle\Controller\Admin;
+namespace App\Controller\Admin\Module\Banner;
 
 use App\Controller\Admin\AdminController;
 use App\Entity\Module\Banner\Banner;

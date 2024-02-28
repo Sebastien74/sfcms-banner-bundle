@@ -1,6 +1,6 @@
 <?php
 
-namespace Sfcms\BannerBundle\Controller\Front;
+namespace App\Controller\Front\Action;
 
 use App\Controller\Front\FrontController;
 use Symfony\Component\Routing\Attribute\Route;

@@ -3,7 +3,8 @@
     "type": "symfony-bundle",
     "description": "Sfcms - Banner Bundle.",
     "init": {
-        "name": "Banner"
+        "name": "Banner",
+        "cmd": "app:copy:bundle"
     },
     "keywords": [
         "sfcms",
