@@ -9,25 +9,26 @@
         "cmd": "app:copy:bundle",
         "module": {
             "name": "Bannières publicitaires",
-            "icon": "fal fa-image"
+            "description": "Module permettant de créer et afficher des bannières publicitaires et récupérer des statistiques du nombre de vues et de clicks.",
+            "icon": "/medias/icons/fontawesome/light/images.svg"
         },
         "actions": [
             {
                 "name": "Bannière publicitaire",
                 "controller": "App\\Controller\\Front\\Action\\BannerController",
-                "class": "App\\Entity\\Module\\Banner\\Banner",
+                "entity": "App\\Entity\\Module\\Banner\\Banner",
                 "action": "view",
-                "icon": "fal fa-image",
-                "asCard": false,
+                "icon": "/medias/icons/fontawesome/light/image.svg",
+                "card": false,
                 "dropdown": true
             },
             {
                 "name": "Bannières publicitaires",
                 "controller": "App\\Controller\\Front\\Action\\BannerController",
-                "class": "App\\Entity\\Module\\Banner\\Teaser",
+                "entity": "App\\Entity\\Module\\Banner\\Teaser",
                 "action": "teaser",
-                "icon": "fal fa-images",
-                "asCard": false,
+                "icon": "/medias/icons/fontawesome/light/images.svg",
+                "card": false,
                 "dropdown": true
             }
         ]

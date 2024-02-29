@@ -1,18 +1,18 @@
 #####################################
-#           Publicity               #
+#           Banner                  #
 #####################################
 
-App\Entity\Module\Publicity\Category:
+App\Entity\Module\Banner\Category:
     translations:
         adminName:
-            fr: "Nom de la catégorie (Module publicité)"
+            fr: "Nom de la catégorie (Module bannière)"
             en: 'Category name (Module banner)'
         singular:
-            fr: "Catégorie de publicité"
-            en: 'Publicity category'
+            fr: "Catégorie de bannière"
+            en: 'Banner category'
         plural:
-            fr: "Catégories de publicités"
-            en: 'Advertising categories'
+            fr: "Catégories de bannières"
+            en: 'Banner categories'
         add:
             fr: 'Ajouter une catégorie'
             en: 'Add category'
@@ -30,20 +30,22 @@ App\Entity\Module\Publicity\Category:
         - maxWidth
         - maxHeight
 
-App\Entity\Module\Publicity\Publicity:
+App\Entity\Module\Banner\Banner:
+    orderBy: viewCount
+    orderSort: DESC
     translations:
         adminName:
-            fr: "Nom de la publicité"
-            en: 'Publicity name'
+            fr: "Nom de la bannière"
+            en: 'Banner name'
         category:
             fr: "Catégorie"
             en: 'Category'
         singular:
             fr: 'Bannière publicitaire'
-            en: 'Publicity'
+            en: 'Banner'
         plural:
             fr: 'Bannières publicitaires'
-            en: 'Advertising'
+            en: 'Banner'
         add:
             fr: 'Ajouter une bannières'
             en: 'Add banner'
@@ -71,13 +73,13 @@ App\Entity\Module\Publicity\Publicity:
         - publicationStart
         - publicationEnd
 
-App\Entity\Module\Publicity\Teaser:
+App\Entity\Module\Banner\Teaser:
     translations:
         adminName:
-            fr: 'Nom du teaser (Module publicités)'
+            fr: 'Nom du teaser (Module bannières)'
             en: 'Teaser name (Module banner)'
         singular:
-            fr: 'Teaser (Module publicités)'
+            fr: 'Teaser (Module bannières)'
             en: 'Teaser (Module banner)'
         plural:
             fr: 'Teasers'
