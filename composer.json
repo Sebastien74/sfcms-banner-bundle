@@ -51,6 +51,17 @@
         "php": ">=8.2.11",
         "symfony/framework-bundle": "^6.4|^7.0"
     },
+    "scripts": {
+        "auto-scripts": {
+            "cache:clear": "symfony-cmd"
+        },
+        "post-install-cmd": [
+            "@auto-scripts"
+        ],
+        "post-update-cmd": [
+            "@auto-scripts"
+        ]
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "1.0-dev"
