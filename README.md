@@ -11,46 +11,10 @@
 
 ---
 
-Add TAG
-git tag v1.0.0
-git push --tags -u origin main
+### Installation
 
-Remove tags
-git tag | foreach-object -process { git push origin --delete $_ }
-git tag | foreach-object -process { git tag -d $_ }
-
-https://symfony.com/doc/current/bundles/override.html
-
+```bash
 php composer.phar dump-autoload
 php composer.phar require sfcms/banner-bundle
-php bin/console app:copy:bundle
-
-IN modules.html.twig sidebar
-{% include 'admin/include/sidebar/include/modules/banner.html.twig' %}
-
-Add in this table or do it automataly by active modules
-    {% set modules = [
-        'newscasts',
-        'matches',
-        'sliders',
-        'events',
-        'maps',
-        'faqs',
-        'forms',
-        'forums',
-        'galleries',
-        'newsletters',
-        'partners',
-        'portfolios',
-        'tables',
-        'tabs',
-        'searchs',
-        'catalogs',
-        'makings',
-        'agendas',
-        'forums',
-        'timelines',
-        'portfolios',
-        'publicities',
-        'contacts'
-    ] %}
+php composer.phar remove sfcms/banner-bundle # or simply remove manually sfcms/banner-bundle row in composer.json
+```
