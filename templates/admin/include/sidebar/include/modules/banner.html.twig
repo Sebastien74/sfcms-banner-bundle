@@ -1,24 +1,24 @@
 {% trans_default_domain 'admin' %}
 
-{% if 'publicity'|moduleActive(allModules) %}
+{% if 'banner'|moduleActive(allModules) %}
     {% set uri = app.request.uri %}
-    {% set active = '/publicities/' in uri %}
-    {% set module = 'publicity'|moduleActive(allModules, true) %}
-    {% set i18n = i18nsModules['publicity'][app.user.locale] is defined ? i18nsModules['publicity'][app.user.locale] : i18nsModules['publicity']['fr'] %}
-    {% set title = i18n.placeholder is defined and i18n.placeholder|striptags|length > 0 ? i18n.placeholder : i18nsModules['publicity']['entity'].adminName %}
+    {% set active = '/banners/' in uri %}$
+    {% set module = 'banner'|moduleActive(allModules, true) %}
+    {% set i18n = i18nsModules['banner'][app.user.locale] is defined ? i18nsModules['banner'][app.user.locale] : i18nsModules['banner']['fr'] %}
+    {% set title = i18n.placeholder is defined and i18n.placeholder|striptags|length > 0 ? i18n.placeholder : i18nsModules['banner']['entity'].adminName %}
     <li{% if active %} class="active"{% endif %}>
         <a class="has-arrow{% if active %} active{% endif %}" href="javascript:void(0)" aria-expanded="false">
-            {{ i18nsModules['publicity']['entity'].iconClass|iconHtml({'width': 17, 'height': 15, 'class': 'white me-3'}) }}{{ title|raw }}
+            {{ i18nsModules['banner']['entity'].iconClass|iconHtml({'width': 17, 'height': 15, 'class': 'white me-3'}) }}{{ title|raw }}
         </a>
-        <ul aria-expanded="false" class="collapse{% if pageTag == 'publicities' %} in{% endif %}">
+        <ul aria-expanded="false" class="collapse{% if pageTag == 'banners' %} in{% endif %}">
             <li>
-                <a href="{{ path('admin_publicity_index', {"website": websiteId}) }}" data-toggle="preloader">{{ "Liste des bannières publicitaires"|trans }}</a>
+                <a href="{{ path('admin_banner_index', {"website": websiteId}) }}" data-toggle="preloader">{{ "Liste des bannières publicitaires"|trans }}</a>
             </li>
             <li>
-                <a href="{{ path('admin_publicityteaser_index', {"website": websiteId}) }}"{% if '/publicities/teasers/' in uri %} class="active"{% endif %} data-toggle="preloader">{{ "Configuration des teaser"|trans }}</a>
+                <a href="{{ path('admin_bannersize_index', {"website": websiteId}) }}"{% if '/publicities/categories/' in uri %} class="active"{% endif %} data-toggle="preloader">{{ "Liste des tailles"|trans }}</a>
             </li>
             <li>
-                <a href="{{ path('admin_publicitycategory_index', {"website": websiteId}) }}"{% if '/publicities/categories/' in uri %} class="active"{% endif %} data-toggle="preloader">{{ "Liste des catégories"|trans }}</a>
+                <a href="{{ path('admin_bannerteaser_index', {"website": websiteId}) }}"{% if '/publicities/teasers/' in uri %} class="active"{% endif %} data-toggle="preloader">{{ "Configuration des teaser"|trans }}</a>
             </li>
         </ul>
     </li>

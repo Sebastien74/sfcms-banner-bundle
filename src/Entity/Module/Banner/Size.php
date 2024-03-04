@@ -4,27 +4,25 @@ namespace App\Entity\Module\Banner;
 
 use App\Entity\BaseEntity;
 use App\Entity\Core\Website;
-use App\Repository\Module\Banner\CategoryRepository;
-use Doctrine\Common\Collections\ArrayCollection;
+use App\Repository\Module\Banner\SizeRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\PersistentCollection;
 
 /**
- * Category
+ * Size
  *
  * @author Sébastien FOURNIER <contact@sebastien-fournier.com>
  */
-#[ORM\Table(name: 'module_banner_category')]
-#[ORM\Entity(repositoryClass: CategoryRepository::class)]
+#[ORM\Table(name: 'module_banner_size')]
+#[ORM\Entity(repositoryClass: SizeRepository::class)]
 #[ORM\HasLifecycleCallbacks]
-class Category extends BaseEntity
+class Size extends BaseEntity
 {
     /**
      * Configurations
      */
     protected static string $masterField = 'website';
     protected static array $interface = [
-        'name' => 'bannercategory',
+        'name' => 'bannersize',
         'resize' => true
     ];
 
@@ -46,20 +44,9 @@ class Category extends BaseEntity
     #[ORM\Column(type: "integer", nullable: true)]
     private ?int $mobileMaxHeight = null;
 
-    #[ORM\OneToMany(mappedBy: "category", targetEntity: Banner::class, cascade: ["persist"], orphanRemoval: true)]
-    private ArrayCollection|PersistentCollection $banners;
-
     #[ORM\ManyToOne(targetEntity: Website::class)]
     #[ORM\JoinColumn(nullable: false)]
     private ?Website $website = null;
-
-    /**
-     * Category constructor.
-     */
-    public function __construct()
-    {
-        $this->banners = new ArrayCollection();
-    }
 
     /**
      * @return int|null
@@ -155,22 +142,6 @@ class Category extends BaseEntity
     public function setMobileMaxHeight(?int $mobileMaxHeight): void
     {
         $this->mobileMaxHeight = $mobileMaxHeight;
-    }
-
-    /**
-     * @return ArrayCollection|PersistentCollection
-     */
-    public function getBanners(): ArrayCollection|PersistentCollection
-    {
-        return $this->banners;
-    }
-
-    /**
-     * @param ArrayCollection|PersistentCollection $banners
-     */
-    public function setBanners(ArrayCollection|PersistentCollection $banners): void
-    {
-        $this->banners = $banners;
     }
 
     public function getWebsite(): ?Website

@@ -3,8 +3,8 @@
 namespace App\Form\Type\Module\Banner;
 
 use App\Entity\Core\Website;
-use App\Entity\Module\Banner\Category;
 use App\Entity\Module\Banner\Banner;
+use App\Entity\Module\Banner\Size;
 use App\Form\Widget as WidgetType;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
@@ -59,15 +59,17 @@ class BannerType extends AbstractType
             'class' => 'refer-code'
         ]);
 
-        $builder->add('category', EntityType::class, [
-            'label' => $this->translator->trans('Catégorie', [], 'admin'),
-            'placeholder' => $this->translator->trans('Sélectionnez', [], 'admin'),
+        $sizes = $this->entityManager->getRepository(Size::class)->findBy(['website' => $this->website]);
+        $displayPlaceholderSizes = count($sizes) === 0 || count($sizes) > 1;
+        $builder->add('size', EntityType::class, [
+            'label' => $this->translator->trans('Taille', [], 'admin'),
+            'placeholder' => $displayPlaceholderSizes ? $this->translator->trans('Sélectionnez', [], 'admin') : false,
             'display' => 'search',
             'attr' => [
-                'data-placeholder' => $this->translator->trans('Sélectionnez', [], 'admin'),
+                'data-placeholder' => $displayPlaceholderSizes ? $this->translator->trans('Sélectionnez', [], 'admin') : false,
                 'group' => "col-md-3",
             ],
-            'class' => Category::class,
+            'class' => Size::class,
             'query_builder' => function (EntityRepository $er) {
                 return $er->createQueryBuilder('c')
                     ->andWhere('c.website = :website')

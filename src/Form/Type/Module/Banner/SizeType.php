@@ -2,7 +2,7 @@
 
 namespace App\Form\Type\Module\Banner;
 
-use App\Entity\Module\Banner\Category;
+use App\Entity\Module\Banner\Size;
 use App\Form\Widget as WidgetType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -11,16 +11,16 @@ use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
- * CategoryType
+ * SizeType
  *
  * @author Sébastien FOURNIER <contact@sebastien-fournier.com>
  */
-class CategoryType extends AbstractType
+class SizeType extends AbstractType
 {
     private bool $isInternalUser;
 
     /**
-     * CategoryType constructor.
+     * SizeType constructor.
      */
     public function __construct(
         private readonly TranslatorInterface $translator,
@@ -32,7 +32,7 @@ class CategoryType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $isNew = !$builder->getData()->getId();
 
@@ -56,10 +56,10 @@ class CategoryType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Category::class,
+            'data_class' => Size::class,
             'website' => NULL,
             'translation_domain' => 'admin'
         ]);

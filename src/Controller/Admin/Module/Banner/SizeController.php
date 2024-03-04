@@ -3,76 +3,76 @@
 namespace App\Controller\Admin\Module\Banner;
 
 use App\Controller\Admin\AdminController;
-use App\Entity\Module\Banner\Category;
-use App\Form\Type\Module\Banner\CategoryType;
+use App\Entity\Module\Banner\Size;
+use App\Form\Type\Module\Banner\SizeType;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 /**
- * CategoryController
+ * SizeController
  *
- * Banner Category Action management
+ * Banner Size Action management
  *
  * @author Sébastien FOURNIER <contact@sebastien-fournier.com>
  */
 #[IsGranted('ROLE_BANNER')]
 #[Route('/admin-%security_token%/{website}/banners/categories', schemes: '%protocol%')]
-class CategoryController extends AdminController
+class SizeController extends AdminController
 {
-    protected ?string $class = Category::class;
-    protected ?string $formType = CategoryType::class;
+    protected ?string $class = Size::class;
+    protected ?string $formType = SizeType::class;
 
     /**
-     * Index Category.
+     * Index Size.
      */
-    #[Route('/index', name: 'admin_bannercategory_index', methods: 'GET|POST')]
+    #[Route('/index', name: 'admin_bannersize_index', methods: 'GET|POST')]
     public function index(Request $request, PaginatorInterface $paginator)
     {
         return parent::index($request, $paginator);
     }
 
     /**
-     * New Category.
+     * New Size.
      */
-    #[Route('/new', name: 'admin_bannercategory_new', methods: 'GET|POST')]
+    #[Route('/new', name: 'admin_bannersize_new', methods: 'GET|POST')]
     public function new(Request $request)
     {
         return parent::new($request);
     }
 
     /**
-     * Edit Category.
+     * Edit Size.
      */
-    #[Route('/edit/{bannercategory}', name: 'admin_bannercategory_layout', methods: 'GET|POST')]
+    #[Route('/edit/{bannersize}', name: 'admin_bannersize_layout', methods: 'GET|POST')]
     public function edit(Request $request)
     {
         return parent::layout($request);
     }
 
     /**
-     * Show Category.
+     * Show Size.
      */
-    #[Route('/show/{bannercategory}', name: 'admin_bannercategory_show', methods: 'GET')]
+    #[Route('/show/{bannersize}', name: 'admin_bannersize_show', methods: 'GET')]
     public function show(Request $request)
     {
         return parent::show($request);
     }
 
     /**
-     * Position Category.
+     * Position Size.
      */
-    #[Route('/position/{bannercategory}', name: 'admin_bannercategory_position', methods: 'GET|POST')]
+    #[Route('/position/{bannersize}', name: 'admin_bannersize_position', methods: 'GET|POST')]
     public function position(Request $request)
     {
         return parent::position($request);
     }
 
     /**
-     * Delete Category.
+     * Delete Size.
      */
-    #[Route('/delete/{bannercategory}', name: 'admin_bannercategory_delete', methods: 'DELETE')]
+    #[Route('/delete/{bannersize}', name: 'admin_bannersize_delete', methods: 'DELETE')]
     public function delete(Request $request)
     {
         return parent::delete($request);

@@ -6,7 +6,7 @@ use App\Entity\BaseEntity;
 use App\Entity\Core\Website;
 use App\Entity\Media\MediaRelation;
 use App\Entity\Translation\i18n;
-use App\Repository\Module\Banner\PublicityRepository;
+use App\Repository\Module\Banner\BannerRepository;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -20,7 +20,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @author Sébastien FOURNIER <contact@sebastien-fournier.com>
  */
 #[ORM\Table(name: 'module_banner')]
-#[ORM\Entity(repositoryClass: PublicityRepository::class)]
+#[ORM\Entity(repositoryClass: BannerRepository::class)]
 #[ORM\HasLifecycleCallbacks]
 #[ORM\AssociationOverrides([
     new ORM\AssociationOverride(
@@ -62,9 +62,9 @@ class Banner extends BaseEntity
     #[ORM\Column(type: "datetime", nullable: true)]
     private ?\DateTimeInterface $publicationEnd = null;
 
-    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: "banners")]
-    #[ORM\JoinColumn(name: 'category_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
-    private Category|null $category = null;
+    #[ORM\ManyToOne(targetEntity: Size::class)]
+    #[ORM\JoinColumn(name: 'size_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
+    private Size|null $size = null;
 
     #[ORM\ManyToOne(targetEntity: Website::class)]
     #[ORM\JoinColumn(nullable: false)]
@@ -170,19 +170,19 @@ class Banner extends BaseEntity
     }
 
     /**
-     * @return Category|null
+     * @return Size|null
      */
-    public function getCategory(): ?Category
+    public function getSize(): ?Size
     {
-        return $this->category;
+        return $this->size;
     }
 
     /**
-     * @param Category|null $category
+     * @param Size|null $size
      */
-    public function setCategory(?Category $category): void
+    public function setSize(?Size $size): void
     {
-        $this->category = $category;
+        $this->size = $size;
     }
 
     public function getWebsite(): ?Website

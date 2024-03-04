@@ -4,6 +4,7 @@ namespace App\Controller\Admin\Module\Banner;
 
 use App\Controller\Admin\AdminController;
 use App\Entity\Module\Banner\Banner;
+use App\Form\Manager\Module\BannerManagerInterface;
 use App\Form\Type\Module\Banner\BannerType;
 use App\Service\Interface\AdminLocatorInterface;
 use App\Service\Interface\CoreLocatorInterface;
@@ -30,9 +31,11 @@ class BannerController extends AdminController
      * BannerController constructor.
      */
     public function __construct(
+        protected BannerManagerInterface $bannerManager,
         protected CoreLocatorInterface $baseLocator,
         protected AdminLocatorInterface $adminLocator
     ) {
+        $this->formManager = $bannerManager;
         parent::__construct($baseLocator, $adminLocator);
     }
 
