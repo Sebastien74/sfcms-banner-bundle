@@ -13,7 +13,7 @@ use Symfony\Component\Cache\Adapter\PhpFilesAdapter;
 use Symfony\Component\Cache\Exception\CacheException;
 
 /**
- * BannerRepository
+ * BannerRepository.
  *
  * @method Banner|null find($id, $lockMode = null, $lockVersion = null)
  * @method Banner|null findOneBy(array $criteria, array $orderBy = null)
@@ -26,20 +26,16 @@ class BannerRepository extends ServiceEntityRepository
 {
     /**
      * BannerRepository constructor.
-     *
-     * @param ManagerRegistry $registry
-     * @param CacheService $cacheService
      */
     public function __construct(
         private readonly ManagerRegistry $registry,
-        private readonly CacheService    $cacheService
-    )
-    {
+        private readonly CacheService $cacheService
+    ) {
         parent::__construct($this->registry, Banner::class);
     }
 
     /**
-     * Find one online by filter
+     * Find one online by filter.
      *
      * @throws CacheException|NonUniqueResultException
      */
@@ -59,13 +55,15 @@ class BannerRepository extends ServiceEntityRepository
             if ($cache instanceof PhpFilesAdapter) {
                 $queryBuilder->setResultCache($cache)->enableResultCache();
             }
+
             return $queryBuilder->getOneOrNullResult();
         }
+
         return null;
     }
 
     /**
-     * Find online by teaser
+     * Find online by teaser.
      *
      * @throws CacheException
      */

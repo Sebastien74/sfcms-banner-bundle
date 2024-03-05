@@ -2,8 +2,8 @@
 
 {% if entities %}
     {% set isFirst = true %}
-    {% set category = entities|first.category %}
-    {% set maxWidth = category.maxWidth is defined and category.maxWidth ? category.maxWidth : 728 %}
+    {% set sizes = entities|first.size %}
+    {% set maxWidth = sizes.maxWidth is defined and sizes.maxWidth ? sizes.maxWidth : 600 %}
     <div id="carousel-banner-teaser"
          class="carousel banner-carousel slide carousel-fade d-inline-flex justify-content-end"
          data-bs-interval="4000"
@@ -13,33 +13,37 @@
          data-component="banner">
         <div class="carousel-inner">
             {% for entity in entities %}
-                {% set i18n = entity|i18n %}
-                {% set category = entity.category %}
-                {% set maxWidth = category.maxWidth is defined and category.maxWidth ? category.maxWidth : 728 %}
-                {% set maxHeight = category.maxHeight is defined and category.maxHeight ? category.maxHeight : 90 %}
-                {% set tabletMaxWidth = category.tabletMaxWidth is defined and category.tabletMaxWidth ? category.tabletMaxWidth : maxWidth %}
-                {% set tabletMaxHeight = category.tabletMaxHeight is defined and category.tabletMaxHeight ? category.tabletMaxHeight : maxHeight %}
-                {% set mobileMaxWidth = category.mobileMaxWidth is defined and category.mobileMaxWidth ? category.mobileMaxWidth : tabletMaxWidth %}
-                {% set mobileMaxHeight = category.mobileMaxHeight is defined and category.mobileMaxHeight ? category.mobileMaxHeight : tabletMaxHeight %}
-                {% set mediaRelation = entity|i18nMedia %}
-                {% if mediaRelation %}
-                    {% set media = mediaRelation.media %}
-                    {% set mediaPath = 'uploads/' ~ website.uploadDirname ~ '/' ~ media.filename %}
-                    {% set i18nMedia = mediaRelation.i18n %}
-                    {% set link = i18nMedia|i18nLink %}
+                {% set sizes = entity.size %}
+                {% set maxWidth = sizes.maxWidth is defined and sizes.maxWidth ? sizes.maxWidth : 300 %}
+                {% set maxHeight = sizes.maxHeight is defined and sizes.maxHeight ? sizes.maxHeight : 600 %}
+                {% set tabletMaxWidth = sizes.tabletMaxWidth is defined and sizes.tabletMaxWidth ? sizes.tabletMaxWidth : maxWidth %}
+                {% set tabletMaxHeight = sizes.tabletMaxHeight is defined and sizes.tabletMaxHeight ? sizes.tabletMaxHeight : maxHeight %}
+                {% set mobileMaxWidth = sizes.mobileMaxWidth is defined and sizes.mobileMaxWidth ? sizes.mobileMaxWidth : 300 %}
+                {% set mobileMaxHeight = sizes.mobileMaxHeight is defined and sizes.mobileMaxHeight ? sizes.mobileMaxHeight : 250 %}
+                {% set i18nMedias = entity|i18nMedias %}
+                {% set mediaRelationDesktop = i18nMedias|first %}
+                {% set mediaRelationMobile = i18nMedias|last ? i18nMedias|last : mediaRelationDesktop %}
+                {% if mediaRelationDesktop and mediaRelationMobile %}
+                    {% set mediaDesktop = mediaRelationDesktop.media %}
+                    {% set mediaMobile = mediaRelationMobile.media %}
+                    {% set mediaDesktopPath = 'uploads/' ~ website.uploadDirname ~ '/' ~ mediaDesktop.filename %}
+                    {% set mediaMobilePath = 'uploads/' ~ website.uploadDirname ~ '/' ~ mediaMobile.filename %}
+                    {% set i18nMediaDesktop = mediaRelationDesktop.i18n %}
+                    {% set i18nMediaMobile = mediaRelationMobile.i18n %}
+                    {% set link = entity.i18ns|i18n|i18nLink %}
+                    {% set title = link.title is defined and link.title ? link.title : entity.adminName %}
                     <div class="carousel-item{% if isFirst %} active{% endif %}">
-                        {% set title = i18n.title is defined and i18n.title ? i18n.title : entity.adminName %}
                         <div class="banner banner-{{ entity.slug }}" data-path="{{ path('front_banner_handler', {'banner': entity.id}) }}">
                             {% if link.link %}
                                 <a href="{{ link.link }}" aria-label="{{ title|striptags }}"
                                     {% if link.targetBlank %} target="_blank"{% endif %}
                                     {% if link.externalLink %} rel="noopener noreferrer"{% endif %}>
                             {% endif %}
-                                {{ imgRender({'src': asset(mediaPath),
+                                {{ imgRender({'src': asset(mediaDesktopPath),
                                     'screensSizes': {
-                                        'mobile': {'width': mobileMaxWidth, 'height': mobileMaxHeight},
-                                        'tablet': {'width': tabletMaxWidth, 'height': tabletMaxHeight},
-                                        'desktop': {'width': maxWidth, 'height': maxHeight}
+                                        'mobile': {'width': mobileMaxWidth, 'height': mobileMaxHeight, 'media': mediaRelationMobile},
+                                        'tablet': {'width': tabletMaxWidth, 'height': tabletMaxHeight, 'media': mediaRelationDesktop},
+                                        'desktop': {'width': maxWidth, 'height': maxHeight, 'media': mediaRelationDesktop}
                                     }
                                 }) }}
                             {% if link.link %}

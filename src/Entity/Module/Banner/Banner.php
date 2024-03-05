@@ -7,7 +7,6 @@ use App\Entity\Core\Website;
 use App\Entity\Media\MediaRelation;
 use App\Entity\Translation\i18n;
 use App\Repository\Module\Banner\BannerRepository;
-use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -15,7 +14,7 @@ use Doctrine\ORM\PersistentCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Banner
+ * Banner.
  *
  * @author Sébastien FOURNIER <contact@sebastien-fournier.com>
  */
@@ -36,39 +35,44 @@ use Symfony\Component\Validator\Constraints as Assert;
         inverseJoinColumns: [new ORM\InverseJoinColumn(name: 'i18n_id', referencedColumnName: 'id', unique: true, onDelete: 'cascade')],
         joinTable: new ORM\JoinTable(name: 'module_banner_i18ns'),
         fetch: 'EXTRA_LAZY'
-    )
+    ),
 ])]
 class Banner extends BaseEntity
 {
     /**
-     * Configurations
+     * Configurations.
      */
     protected static array $interface = [
-        'name' => 'banner'
+        'name' => 'banner',
+        'removeMedia' => false,
     ];
 
-    #[ORM\Column(type: "integer", nullable: true)]
+    #[ORM\Column(type: 'integer', nullable: true)]
     private int $viewCount = 0;
 
-    #[ORM\Column(type: "integer", nullable: true)]
+    #[ORM\Column(type: 'integer', nullable: true)]
     private int $clickCount = 0;
 
-    #[ORM\Column(type: "boolean")]
+    #[ORM\Column(type: 'boolean')]
     private ?bool $active = false;
 
-    #[ORM\Column(type: "datetime", nullable: true)]
+    #[ORM\Column(type: 'datetime', nullable: true)]
     private ?\DateTimeInterface $publicationStart = null;
 
-    #[ORM\Column(type: "datetime", nullable: true)]
+    #[ORM\Column(type: 'datetime', nullable: true)]
     private ?\DateTimeInterface $publicationEnd = null;
 
     #[ORM\ManyToOne(targetEntity: Size::class)]
     #[ORM\JoinColumn(name: 'size_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
-    private Size|null $size = null;
+    private ?Size $size = null;
 
     #[ORM\ManyToOne(targetEntity: Website::class)]
     #[ORM\JoinColumn(nullable: false)]
     private ?Website $website = null;
+
+    #[ORM\ManyToOne(targetEntity: Category::class)]
+    #[ORM\JoinColumn(nullable: true)]
+    private ?Category $category = null;
 
     #[ORM\ManyToMany(targetEntity: i18n::class, cascade: ['persist', 'remove'], orphanRemoval: true)]
     #[ORM\OrderBy(['locale' => 'ASC'])]
@@ -89,97 +93,61 @@ class Banner extends BaseEntity
         $this->mediaRelations = new ArrayCollection();
     }
 
-    /**
-     * @return int
-     */
     public function getViewCount(): int
     {
         return $this->viewCount;
     }
 
-    /**
-     * @param int $viewCount
-     */
     public function setViewCount(int $viewCount): void
     {
         $this->viewCount = $viewCount;
     }
 
-    /**
-     * @return int
-     */
     public function getClickCount(): int
     {
         return $this->clickCount;
     }
 
-    /**
-     * @param int $clickCount
-     */
     public function setClickCount(int $clickCount): void
     {
         $this->clickCount = $clickCount;
     }
 
-    /**
-     * @return bool|null
-     */
     public function isActive(): ?bool
     {
         return $this->active;
     }
 
-    /**
-     * @param bool|null $active
-     */
     public function setActive(?bool $active): void
     {
         $this->active = $active;
     }
 
-    /**
-     * @return DateTimeInterface|null
-     */
     public function getPublicationStart(): ?\DateTimeInterface
     {
         return $this->publicationStart;
     }
 
-    /**
-     * @param DateTimeInterface|null $publicationStart
-     */
     public function setPublicationStart(?\DateTimeInterface $publicationStart): void
     {
         $this->publicationStart = $publicationStart;
     }
 
-    /**
-     * @return DateTimeInterface|null
-     */
     public function getPublicationEnd(): ?\DateTimeInterface
     {
         return $this->publicationEnd;
     }
 
-    /**
-     * @param DateTimeInterface|null $publicationEnd
-     */
     public function setPublicationEnd(?\DateTimeInterface $publicationEnd): void
     {
         $this->publicationEnd = $publicationEnd;
     }
 
-    /**
-     * @return Size|null
-     */
     public function getSize(): ?Size
     {
         return $this->size;
     }
 
-    /**
-     * @param Size|null $size
-     */
     public function setSize(?Size $size): void
     {
         $this->size = $size;
@@ -193,6 +161,18 @@ class Banner extends BaseEntity
     public function setWebsite(?Website $website): self
     {
         $this->website = $website;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

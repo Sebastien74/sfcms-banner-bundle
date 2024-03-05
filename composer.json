@@ -23,7 +23,7 @@
                 "dropdown": true
             },
             {
-                "name": "Bannières publicitaires",
+                "name": "Teaser de Bannières publicitaires",
                 "controller": "App\\Controller\\Front\\Action\\BannerController",
                 "entity": "App\\Entity\\Module\\Banner\\Teaser",
                 "action": "teaser",

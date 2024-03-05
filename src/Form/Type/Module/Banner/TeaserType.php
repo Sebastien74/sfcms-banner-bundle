@@ -2,6 +2,7 @@
 
 namespace App\Form\Type\Module\Banner;
 
+use App\Entity\Module\Banner\Banner;
 use App\Entity\Module\Banner\Category;
 use App\Entity\Module\Banner\Teaser;
 use App\Form\Widget as WidgetType;
@@ -48,11 +49,26 @@ class TeaserType extends AbstractType
         ]);
 
         if (!$isNew) {
+
             $builder->add('categories', EntityType::class, [
                 'label' => $this->translator->trans('Catégories', [], 'admin'),
                 'required' => false,
                 'display' => 'search',
                 'class' => Category::class,
+                'attr' => [
+                    'data-placeholder' => $this->translator->trans('Sélectionnez', [], 'admin'),
+                ],
+                'choice_label' => function ($entity) {
+                    return strip_tags($entity->getAdminName());
+                },
+                'multiple' => true,
+            ]);
+
+            $builder->add('banners', EntityType::class, [
+                'label' => $this->translator->trans('Bannières', [], 'admin'),
+                'required' => false,
+                'display' => 'search',
+                'class' => Banner::class,
                 'attr' => [
                     'data-placeholder' => $this->translator->trans('Sélectionnez', [], 'admin'),
                 ],

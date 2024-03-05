@@ -8,13 +8,13 @@ export default function () {
     let carouselInViewPort = function (carousel) {
         let inViewport = isInViewport(carousel);
         if (inViewport) {
-            let activePub = carousel.querySelector('.carousel-item.active').querySelector('.banner');
-            addOneView(activePub);
+            let activeBanner = carousel.querySelector('.carousel-item.active').querySelector('.banner');
+            addOneView(activeBanner);
             carousel.addEventListener('slid.bs.carousel', function (ev) {
-                let activePub = ev.relatedTarget.querySelector('.banner');
+                let activeBanner = ev.relatedTarget.querySelector('.banner');
                 let inViewport = isInViewport(carousel);
-                if (inViewport && !activePub.classList.contains('already-show')) {
-                    addOneView(activePub);
+                if (inViewport && !activeBanner.classList.contains('already-show')) {
+                    addOneView(activeBanner);
                 }
             });
         }

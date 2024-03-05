@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 /**
- * BannerController
+ * BannerController.
  *
  * Banner Action management
  *
@@ -40,7 +40,7 @@ class BannerController extends AdminController
     }
 
     /**
-     * Index Banner
+     * Index Banner.
      */
     #[Route('/index', name: 'admin_banner_index', methods: 'GET|POST')]
     public function index(Request $request, PaginatorInterface $paginator)
@@ -49,7 +49,7 @@ class BannerController extends AdminController
     }
 
     /**
-     * New Banner
+     * New Banner.
      */
     #[Route('/new', name: 'admin_banner_new', methods: 'GET|POST')]
     public function new(Request $request)
@@ -58,16 +58,17 @@ class BannerController extends AdminController
     }
 
     /**
-     * Edit Banner
+     * Edit Banner.
      */
     #[Route('/edit/{banner}', name: 'admin_banner_edit', methods: 'GET|POST')]
     public function edit(Request $request)
     {
+        $this->template = 'admin/page/banner/edit.html.twig';
         return parent::edit($request);
     }
 
     /**
-     * Delete Banner
+     * Delete Banner.
      */
     #[Route('/delete/{banner}', name: 'admin_banner_delete', methods: 'DELETE')]
     public function delete(Request $request)

@@ -24,7 +24,7 @@ class BannerController extends ActionController
         $website = $this->getWebsite($request);
         $websiteTemplate = $website->getConfiguration()->getTemplate();
         $entity = $this->coreLocator->em()->getRepository(Banner\Banner::class)->findOneOnlineByFilter($request->get('filter'));
-        return $this->render('front/'.$websiteTemplate.'/actions/banner/view.html.twig' , [
+        return $this->render('front/'.$websiteTemplate.'/actions/banner/view.html.twig', [
             'website' => $website,
             'entities' => $entity ? [$entity] : [],
         ]);
@@ -41,24 +41,24 @@ class BannerController extends ActionController
         if (!$teaser) {
             return new HttpFoundation\Response();
         }
-        return $this->render('front/'.$websiteTemplate.'/actions/banner/view.html.twig' , [
+        return $this->render('front/'.$websiteTemplate.'/actions/banner/view.html.twig', [
             'website' => $website,
-            'entities' => $this->coreLocator->em()->getRepository(Banner\Banner::class)->findOnlineByTeaser($teaser)
+            'entities' => $this->coreLocator->em()->getRepository(Banner\Banner::class)->findOnlineByTeaser($teaser),
         ]);
     }
 
     /**
      * Handler.
      */
-    #[Route('/banner/handler/{banner}', name: 'front_banner_handler', options: ['isMainRequest' => false], defaults: ['banner' => null], methods: ["POST"], schemes: '%protocol%')]
+    #[Route('/banner/handler/{banner}', name: 'front_banner_handler', options: ['isMainRequest' => false], defaults: ['banner' => null], methods: ['POST'], schemes: '%protocol%')]
     public function handler(HttpFoundation\Request $request, ?Banner\Banner $banner = null): HttpFoundation\JsonResponse
     {
         $event = $request->get('event');
         $success = $event && $banner;
         if ($success && $banner->isActive()) {
-            if ($event == 'click') {
+            if ('click' == $event) {
                 $banner->setClickCount($banner->getClickCount() + 1);
-            } elseif ($event == 'load') {
+            } elseif ('load' == $event) {
                 $banner->setViewCount($banner->getViewCount() + 1);
             }
             $this->coreLocator->em()->persist($banner);

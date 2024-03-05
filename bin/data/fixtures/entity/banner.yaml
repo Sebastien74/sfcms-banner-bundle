@@ -2,37 +2,10 @@
 #           Banner                  #
 #####################################
 
-App\Entity\Module\Banner\Size:
-    translations:
-        adminName:
-            fr: "Nom des tailles (Module bannière)"
-            en: 'Sizes name (Module banner)'
-        singular:
-            fr: "Tailles de bannière"
-            en: 'Banner sizes'
-        plural:
-            fr: "Tailles de bannière"
-            en: 'Banner sizes'
-        add:
-            fr: 'Ajouter une configuration'
-            en: 'Add configuration'
-        delete:
-            fr: "Supprimer la configuration"
-            en: 'Delete configuration'
-        maxWidth:
-            fr: "Largeur"
-            en: 'Width'
-        maxHeight:
-            fr: "Hauteur"
-            en: 'Height'
-    columns:
-        - adminName
-        - maxWidth
-        - maxHeight
-
 App\Entity\Module\Banner\Banner:
     orderBy: viewCount
     orderSort: DESC
+    mediaMulti: true
     translations:
         adminName:
             fr: "Nom de la bannière"
@@ -62,7 +35,7 @@ App\Entity\Module\Banner\Banner:
             fr: 'Nombre de clique'
             en: 'Click number'
         active:
-            fr: 'Activée'
+            fr: 'Active'
             en: 'Active'
     columns:
         - media
@@ -72,6 +45,54 @@ App\Entity\Module\Banner\Banner:
         - active
         - publicationStart
         - publicationEnd
+
+App\Entity\Module\Banner\Category:
+    translations:
+        adminName:
+            fr: "Nom de la catégorie (Module bannière)"
+            en: 'Category name (Module banner)'
+        singular:
+            fr: "Catégorie de bannières"
+            en: 'Banner category'
+        plural:
+            fr: "Catégories de bannières"
+            en: 'Banner categories'
+        add:
+            fr: 'Ajouter une catégorie'
+            en: 'Add category'
+        delete:
+            fr: "Supprimer la catégorie"
+            en: 'Delete category'
+    columns:
+        - adminName
+
+App\Entity\Module\Banner\Size:
+    translations:
+        adminName:
+            fr: "Nom des tailles (Module bannière)"
+            en: 'Sizes name (Module banner)'
+        singular:
+            fr: "Tailles de bannière"
+            en: 'Banner sizes'
+        plural:
+            fr: "Tailles de bannière"
+            en: 'Banner sizes'
+        add:
+            fr: 'Ajouter une configuration'
+            en: 'Add configuration'
+        delete:
+            fr: "Supprimer la configuration"
+            en: 'Delete configuration'
+        maxWidth:
+            fr: "Largeur"
+            en: 'Width'
+        maxHeight:
+            fr: "Hauteur"
+            en: 'Height'
+    columns:
+        - adminName
+        - maxWidth
+        - maxHeight
 
 App\Entity\Module\Banner\Teaser:
     translations:

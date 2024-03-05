@@ -11,14 +11,14 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 /**
- * SizeController
+ * SizeController.
  *
  * Banner Size Action management
  *
  * @author Sébastien FOURNIER <contact@sebastien-fournier.com>
  */
 #[IsGranted('ROLE_BANNER')]
-#[Route('/admin-%security_token%/{website}/banners/categories', schemes: '%protocol%')]
+#[Route('/admin-%security_token%/{website}/banners/sizes', schemes: '%protocol%')]
 class SizeController extends AdminController
 {
     protected ?string $class = Size::class;

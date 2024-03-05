@@ -1,0 +1,90 @@
+{% extends "admin/base.html.twig" %}
+
+{% trans_default_domain 'admin' %}
+
+{% import 'core/src-macro.html.twig' as resources %}
+
+{% set haveCustomLayout = entity.customLayout is defined and entity.customLayout and entity.layout.id is defined and entity.layout.id %}
+{% set transDomain = interface.name is defined and interface.name
+    ? 'entity_' ~ interface.name : NULL %}
+
+{% if pageTitle is not defined or pageTitle is defined and not pageTitle  %}
+    {% set title = 'singular'|trans([], transDomain) and 'singular'|trans([], transDomain) != 'singular'
+        ? 'singular'|trans([], transDomain) : 'Édition'|trans ~ " " ~ interface.name  %}
+    {% set pageTitle = entity.adminName is defined and entity.adminName ? title ~ ' : ' ~ entity.adminName : title %}
+{% endif %}
+
+{% block title %}{{ pageTitle|htmlEntities }}{% endblock %}
+{% block pageTitle %}{{ pageTitle|truncate(50, false) }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+    {{ form_start(form, {"attr": {
+        "novalidate": "novalidate",
+        "action": app.request.uri,
+        "class": 'master-dropzone-form position-relative',
+        'id': 'form-' ~ entity.id }}) }}
+        <div id="edit-form-{{ interface.name }}" class="card refer-preloader">
+            {% include 'admin/include/stripe-preloader.html.twig' with {'preloaderId': 'edit-card-preloader', 'full': true} only %}
+            {% include 'admin/core/form/save/header.html.twig' %}
+            <div class="card-body pb-0">
+                <div class="row">
+                    {% if form.adminName is defined %}
+                        {{ form_row(form.adminName) }}
+                    {% endif %}
+                    {% if form.slug is defined %}
+                        {{ form_row(form.slug) }}
+                    {% endif %}
+                    {% if form.size is defined %}
+                        {{ form_row(form.size) }}
+                    {% endif %}
+                    {% if form.category is defined %}
+                        {{ form_row(form.category) }}
+                    {% endif %}
+                    {% if form.publicationStart is defined %}
+                        {{ form_row(form.publicationStart) }}
+                    {% endif %}
+                    {% if form.publicationStart is defined %}
+                        {{ form_row(form.publicationEnd) }}
+                    {% endif %}
+                    {% if form.i18ns is defined %}
+                        {% include 'admin/core/form/i18ns.html.twig' with {'i18ns': form.i18ns} %}
+                    {% endif %}
+                </div>
+            </div>
+            {% include 'admin/core/form/save/footer.html.twig' %}
+        </div>
+    {{ form_end(form) }}
+
+    <div class="alert alert-info d-flex align-items-center" role="alert">
+        {{ "fad fa-exclamation-circle"|fontawesome(null, 25, 'info-darken') }}
+        <div>
+            <ol class="d-flex mb-0 ps-4">
+                <li>{{ "Bannière desktop"|trans|raw }}</li>
+                <li class="ms-4">{{ "Bannière mobile"|trans|raw }}</li>
+            </ol>
+        </div>
+    </div>
+
+    {% include 'admin/core/include/medias-sortable.html.twig' with {
+        'formOptions': {
+            'i18ns': {},
+            'excludes_fields': {'i18n': ['*']},
+            'forceI18n': true,
+            'onlyMedia': true,
+            'copyright': false,
+            'save': true,
+            'i18nCardTitle': false,
+            'linkCardTitle': false,
+        }|json_encode
+    } %}
+
+{% endblock %}
