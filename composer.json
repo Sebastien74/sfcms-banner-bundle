@@ -1,7 +1,7 @@
 {
     "name": "sfcms/banner-bundle",
     "type": "symfony-bundle",
-    "description": "Sfcms - Banner Bundle.",
+    "description": "Module used to create and display advertising banners and retrieve statistics on the number of views and clicks.",
     "config": {
         "slug": "banner",
         "title": "Bannières",
@@ -38,7 +38,7 @@
         "banner",
         "bundle"
     ],
-    "homepage": "https://github.com/Sebastien74",
+    "homepage": "https://github.com/Sebastien74/sfcms-banner-bundle",
     "license": "MIT",
     "authors": [
         {
@@ -50,17 +50,6 @@
     "require": {
         "php": ">=8.2.11",
         "symfony/framework-bundle": "^6.4|^7.0"
-    },
-    "scripts": {
-        "auto-scripts": {
-            "app:copy:bundle": "symfony-cmd"
-        },
-        "post-install-cmd": [
-            "@auto-scripts"
-        ],
-        "post-update-cmd": [
-            "@auto-scripts"
-        ]
     },
     "extra": {
         "branch-alias": {
