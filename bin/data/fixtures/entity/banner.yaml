@@ -20,10 +20,10 @@ App\Entity\Module\Banner\Banner:
             fr: 'Bannières publicitaires'
             en: 'Banner'
         add:
-            fr: 'Ajouter une bannières'
+            fr: 'Ajouter une bannière'
             en: 'Add banner'
         delete:
-            fr: "Supprimer la bannières"
+            fr: "Supprimer la bannière"
             en: 'Delete banner'
         media:
             fr: 'Image'

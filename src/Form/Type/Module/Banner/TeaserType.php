@@ -6,6 +6,7 @@ use App\Entity\Module\Banner\Banner;
 use App\Entity\Module\Banner\Category;
 use App\Entity\Module\Banner\Teaser;
 use App\Form\Widget as WidgetType;
+use App\Service\Interface\CoreLocatorInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -20,15 +21,17 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class TeaserType extends AbstractType
 {
+    private TranslatorInterface $translator;
     private bool $isInternalUser;
 
     /**
      * TeaserType constructor.
      */
     public function __construct(
-        private readonly TranslatorInterface $translator,
-        private readonly TokenStorageInterface $tokenStorage)
-    {
+        private readonly CoreLocatorInterface $coreLocator,
+        private readonly TokenStorageInterface $tokenStorage
+    ) {
+        $this->translator = $this->coreLocator->translator();
         $user = !empty($this->tokenStorage->getToken()) ? $this->tokenStorage->getToken()->getUser() : null;
         $this->isInternalUser = $user && in_array('ROLE_INTERNAL', $user->getRoles());
     }

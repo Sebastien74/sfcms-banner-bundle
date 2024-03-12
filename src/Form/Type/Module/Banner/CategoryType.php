@@ -23,10 +23,12 @@ class CategoryType extends AbstractType
     /**
      * CategoryType constructor.
      */
-    public function __construct(TranslatorInterface $translator, AuthorizationCheckerInterface $authorizationChecker)
-    {
-        $this->translator = $translator;
-        $this->isInternalUser = $authorizationChecker->isGranted('ROLE_INTERNAL');
+    public function __construct(
+        private readonly CoreLocatorInterface $coreLocator,
+        private readonly AuthorizationCheckerInterface $authorizationChecker
+    ) {
+        $this->translator = $this->coreLocator->translator();
+        $this->isInternalUser = $this->authorizationChecker->isGranted('ROLE_INTERNAL');
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void

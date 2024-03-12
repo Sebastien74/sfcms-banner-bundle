@@ -4,6 +4,7 @@ namespace App\Form\Type\Module\Banner;
 
 use App\Entity\Module\Banner\Size;
 use App\Form\Widget as WidgetType;
+use App\Service\Interface\CoreLocatorInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -17,15 +18,17 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class SizeType extends AbstractType
 {
+    private TranslatorInterface $translator;
     private bool $isInternalUser;
 
     /**
      * SizeType constructor.
      */
     public function __construct(
-        private readonly TranslatorInterface $translator,
+        private readonly CoreLocatorInterface $coreLocator,
         private readonly AuthorizationCheckerInterface $authorizationChecker
     ) {
+        $this->translator = $this->coreLocator->translator();
         $this->isInternalUser = $this->authorizationChecker->isGranted('ROLE_INTERNAL');
     }
 

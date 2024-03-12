@@ -29,8 +29,9 @@ class BannerRepository extends ServiceEntityRepository
      */
     public function __construct(
         private readonly ManagerRegistry $registry,
-        private readonly CacheService $cacheService
-    ) {
+        private readonly CacheService    $cacheService
+    )
+    {
         parent::__construct($this->registry, Banner::class);
     }
 
@@ -45,10 +46,10 @@ class BannerRepository extends ServiceEntityRepository
             $cache = $this->cacheService->adapter(Banner::class, __FUNCTION__);
             $queryBuilder = $this->queryBuilder();
             if (is_numeric($filter)) {
-                $queryBuilder->andWhere('p.id = :id')
+                $queryBuilder->andWhere('b.id = :id')
                     ->setParameter('id', $filter);
             } else {
-                $queryBuilder->andWhere('p.slug = :slug')
+                $queryBuilder->andWhere('b.slug = :slug')
                     ->setParameter('slug', $filter);
             }
             $queryBuilder = $queryBuilder->getQuery();
@@ -76,8 +77,19 @@ class BannerRepository extends ServiceEntityRepository
             $categoryIds[] = $category->getId();
         }
         if ($categoryIds) {
-            $queryBuilder->andWhere('p.category IN (:categoryIds)')
+            $queryBuilder->andWhere('b.category IN (:categoryIds)')
                 ->setParameter('categoryIds', $categoryIds);
+        }
+        $bannerIds = [];
+        foreach ($teaser->getBanners() as $banner) {
+            $bannerIds[] = $banner->getId();
+        }
+        if ($bannerIds) {
+            $queryBuilder->andWhere('b.id IN (:bannerIds)')
+                ->setParameter('bannerIds', $bannerIds);
+        }
+        if (empty($categoryIds) && empty($bannerIds)) {
+            return [];
         }
         $queryBuilder = $queryBuilder->getQuery();
         if ($cache instanceof PhpFilesAdapter) {
@@ -91,14 +103,14 @@ class BannerRepository extends ServiceEntityRepository
      */
     private function queryBuilder(): QueryBuilder
     {
-        return $this->createQueryBuilder('p')
-            ->leftJoin('p.mediaRelations', 'mr')
-            ->leftJoin('p.category', 'c')
+        return $this->createQueryBuilder('b')
+            ->leftJoin('b.mediaRelations', 'mr')
+            ->leftJoin('b.category', 'c')
             ->leftJoin('mr.media', 'm')
-            ->andWhere('p.active = :active')
-            ->andWhere('p.publicationStart IS NULL OR p.publicationStart < CURRENT_TIMESTAMP()')
-            ->andWhere('p.publicationEnd IS NULL OR p.publicationEnd > CURRENT_TIMESTAMP()')
-            ->andWhere('p.publicationStart IS NOT NULL')
+            ->andWhere('b.active = :active')
+            ->andWhere('b.publicationStart IS NULL OR b.publicationStart < CURRENT_TIMESTAMP()')
+            ->andWhere('b.publicationEnd IS NULL OR b.publicationEnd > CURRENT_TIMESTAMP()')
+            ->andWhere('b.publicationStart IS NOT NULL')
             ->setParameter('active', true)
             ->addSelect('mr')
             ->addSelect('c')

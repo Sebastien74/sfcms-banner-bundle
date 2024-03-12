@@ -7,6 +7,7 @@ use App\Entity\Module\Banner\Banner;
 use App\Entity\Module\Banner\Category;
 use App\Entity\Module\Banner\Size;
 use App\Form\Widget as WidgetType;
+use App\Service\Interface\CoreLocatorInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -24,6 +25,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class BannerType extends AbstractType
 {
+    private TranslatorInterface $translator;
+    private EntityManagerInterface $entityManager;
     private bool $isInternalUser;
     private ?Website $website;
 
@@ -31,10 +34,11 @@ class BannerType extends AbstractType
      * BannerType constructor.
      */
     public function __construct(
-        private readonly TranslatorInterface $translator,
+        private readonly CoreLocatorInterface $coreLocator,
         private readonly AuthorizationCheckerInterface $authorizationChecker,
-        private readonly EntityManagerInterface $entityManager,
     ) {
+        $this->translator = $this->coreLocator->translator();
+        $this->entityManager = $this->coreLocator->em();
         $this->isInternalUser = $this->authorizationChecker->isGranted('ROLE_INTERNAL');
     }
 
