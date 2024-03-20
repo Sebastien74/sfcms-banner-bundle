@@ -5,8 +5,13 @@
     "config": {
         "slug": "banner",
         "title": "Bannières",
-        "roleTitle": "Gestion des bannières publicitaires",
         "cmd": "app:copy:bundle",
+        "roles": {
+            "ROLE_BANNER": {
+                "en": "Banner management",
+                "fr": "Gestion des bannières publicitaires"
+            }
+        },
         "module": {
             "name": "Bannières publicitaires",
             "description": "Module permettant de créer et afficher des bannières publicitaires et récupérer des statistiques du nombre de vues et de clicks.",
@@ -48,8 +53,8 @@
         }
     ],
     "require": {
-        "php": ">=8.2.11",
-        "symfony/framework-bundle": "^6.4|^7.0"
+        "php": ">=8.3",
+        "symfony/framework-bundle": "^7.0"
     },
     "extra": {
         "branch-alias": {
