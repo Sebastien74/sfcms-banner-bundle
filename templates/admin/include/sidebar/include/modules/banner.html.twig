@@ -6,10 +6,10 @@
     {% set module = 'banner'|moduleActive(allModules, true) %}
     {% set i18n = i18nsModules['banner'][app.user.locale] is defined ? i18nsModules['banner'][app.user.locale] : (i18nsModules['banner']['fr'] is defined ? i18nsModules['banner']['fr'] : null) %}
     {% set title = i18n.placeholder is defined and i18n.placeholder|striptags|length > 0 ? i18n.placeholder : (i18nsModules['banner']['entity'].adminName is defined ? i18nsModules['banner']['entity'].adminName : 'Bannières publicitaires'|trans) %}
-    {% set icon = i18nsModules['banner']['entity'].iconClass is defined and i18nsModules['banner']['entity'].iconClass ? i18nsModules['banner']['entity'].iconClass : '/medias/icons/fontawesome/light/images.svg' %}
+    {% set icon = i18nsModules['banner']['entity'].iconClass is defined and i18nsModules['banner']['entity'].iconClass ? i18nsModules['banner']['entity'].iconClass : '/medias/icons/light/images.svg' %}
     <li{% if active %} class="active"{% endif %}>
         <a class="has-arrow{% if active %} active{% endif %}" href="javascript:void(0)" aria-expanded="false">
-            {{ icon|iconHtml({'width': 17, 'height': 15, 'class': 'white me-3'}) }}{{ title|raw }}
+            {{ icon|icon(17, 15, 'white me-3'}) }}{{ title|raw }}
         </a>
         <ul aria-expanded="false" class="collapse{% if pageTag == 'banners' %} in{% endif %}">
             <li>

@@ -15,7 +15,7 @@
         "module": {
             "name": "Bannières publicitaires",
             "description": "Module permettant de créer et afficher des bannières publicitaires et récupérer des statistiques du nombre de vues et de clicks.",
-            "icon": "/medias/icons/fontawesome/light/images.svg"
+            "icon": "/medias/icons/light/images.svg"
         },
         "actions": [
             {
@@ -23,7 +23,7 @@
                 "controller": "App\\Controller\\Front\\Action\\BannerController",
                 "entity": "App\\Entity\\Module\\Banner\\Banner",
                 "action": "view",
-                "icon": "/medias/icons/fontawesome/light/image.svg",
+                "icon": "/medias/icons/light/image.svg",
                 "card": false,
                 "dropdown": true
             },
@@ -32,7 +32,7 @@
                 "controller": "App\\Controller\\Front\\Action\\BannerController",
                 "entity": "App\\Entity\\Module\\Banner\\Teaser",
                 "action": "teaser",
-                "icon": "/medias/icons/fontawesome/light/images.svg",
+                "icon": "/medias/icons/light/images.svg",
                 "card": false,
                 "dropdown": true
             }
