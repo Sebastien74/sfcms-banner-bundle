@@ -4,7 +4,7 @@
     {% set isFirst = true %}
     {% set sizes = entities|first.size %}
     {% set maxWidth = sizes.maxWidth is defined and sizes.maxWidth ? sizes.maxWidth : 600 %}
-    <div id="carousel-banner-teaser"
+    <div id="carousel-banner-{{ uniqId() }}"
          class="carousel banner-carousel slide carousel-fade d-inline-flex justify-content-end"
          data-bs-interval="4000"
          data-bs-pause="false"
@@ -40,10 +40,11 @@
                                     {% if link.externalLink %} rel="noopener noreferrer"{% endif %}>
                             {% endif %}
                                 {{ imgRender({'src': asset(mediaDesktopPath),
+                                    'strict': true,
                                     'screensSizes': {
-                                        'mobile': {'width': mobileMaxWidth, 'height': mobileMaxHeight, 'media': mediaRelationMobile},
-                                        'tablet': {'width': tabletMaxWidth, 'height': tabletMaxHeight, 'media': mediaRelationDesktop},
-                                        'desktop': {'width': maxWidth, 'height': maxHeight, 'media': mediaRelationDesktop}
+                                        'mobile': {'size': 575, 'width': mobileMaxWidth, 'height': mobileMaxHeight, 'media': mediaRelationMobile},
+                                        'tablet': {'size': 991, 'width': tabletMaxWidth, 'height': tabletMaxHeight, 'media': mediaRelationDesktop},
+                                        'desktop': {'size': 1920, 'width': maxWidth, 'height': maxHeight, 'media': mediaRelationDesktop}
                                     }
                                 }) }}
                             {% if link.link %}
